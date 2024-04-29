@@ -1,0 +1,15 @@
+Note: This file contains the current information about the program.
+
+Program Features:
+
+April 29 2024, 4:40 PM
+
+-> Background Music: The main menu has background music. (File name: MainMenuMusic.mp3).
+-> Play Option:
+    -> When the user selects the "Play" option, a "click" sound is played. (File name: Click.mp3).
+    -> The background music stops.
+    -> The program then navigates to the 'GamePlay.py' file, which displays a yellow background with text.
+-> Exit Option:
+    -> When the user selects the "Exit" option, a "click" sound is played. (File name: Click.mp3).
+    -> The background music stops.
+    -> The program exits.
