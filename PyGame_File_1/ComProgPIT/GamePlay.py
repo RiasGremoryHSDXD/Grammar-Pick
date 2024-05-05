@@ -26,3 +26,4 @@ def user_play(game_screen_size):
                 pygame.quit()
 
         pygame.display.update()
+

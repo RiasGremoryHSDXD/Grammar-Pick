@@ -13,3 +13,9 @@ April 29 2024, 4:40 PM
     -> When the user selects the "Exit" option, a "click" sound is played. (File name: Click.mp3).
     -> The background music stops.
     -> The program exits.
+
+
+May 5 2024, 3:12 PM
+
+-> When the mouse hovers over the Play or Exit button in the main menu, the text changes color to create
+    a hover effect.
