@@ -19,3 +19,5 @@ May 5 2024, 3:12 PM
 
 -> When the mouse hovers over the Play or Exit button in the main menu, the text changes color to create
     a hover effect.
+
+Video Link: https://www.awesomescreenshot.com/video/27363380?key=f0662075bbf5bbf8b095088a0d48ffc5
