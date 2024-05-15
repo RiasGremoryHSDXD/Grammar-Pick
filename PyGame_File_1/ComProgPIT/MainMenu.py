@@ -9,7 +9,6 @@ info_object = pygame.display.Info()
 computer_width_res = info_object.current_w - 100  # 1340
 computer_height_res = info_object.current_h - 100  # 800
 game_screen_size = pygame.display.set_mode((computer_width_res, computer_height_res))
-pygame.display.set_caption("Menu")
 
 main_menu_bg_clr = (255, 255, 255)
 position = (0, 0)
@@ -40,6 +39,7 @@ click_sound_effect = mixer.Sound("./../GameMusicStored/Click.mp3")
 
 
 def main_menu():
+    pygame.display.set_caption("Menu")
     running = True
     while running:
         game_screen_size.fill(main_menu_bg_clr)
@@ -52,7 +52,8 @@ def main_menu():
         if play_button.draw_btn(game_screen_size)[0]:
             click_sound_effect.play()
             mixer.music.stop()
-            user_play(game_screen_size)
+            user_play(game_screen_size, computer_width_res, computer_height_res)
+            running = False
 
         if exit_button.draw_btn(game_screen_size)[0]:
             click_sound_effect.play()
