@@ -51,7 +51,6 @@ def main_menu():
 
         if play_button.draw_btn(game_screen_size)[0]:
             click_sound_effect.play()
-            mixer.music.stop()
             user_play(game_screen_size, computer_width_res, computer_height_res)
             running = False
 

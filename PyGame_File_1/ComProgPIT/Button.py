@@ -42,28 +42,32 @@ class AnswerButton:
         self.btn_ans_y = screen_height * (loc_y / 100)
         self.btn_size = (screen_width + screen_height) * 0.07
 
-    def player_one_btn_draw(self, surface_draw, animation_arr, index, text_choice):
+    def player_one_btn_draw(self, surface_draw, animation_arr, index, text_choice, penalty):
         scale_image = pygame.transform.scale(animation_arr[index], (self.btn_size, self.btn_size))
         surface_draw.blit(scale_image, (self.btn_ans_x, self.btn_ans_y))
 
-        text = text_choice
+        if penalty[1] is True:
+            text_choice = ""
 
-        max_width = self.btn_size
-        base_font_size = 50
-        font = pygame.font.SysFont("gagalin", base_font_size)
-        text_width, text_height = font.size(text)
+        if penalty[0] is False:
+            text = text_choice
 
-        while text_width > max_width:
-            base_font_size -= 1
+            max_width = self.btn_size
+            base_font_size = 35
             font = pygame.font.SysFont("gagalin", base_font_size)
             text_width, text_height = font.size(text)
 
-        text_surface = font.render(text, True, (0, 0, 0))
+            while text_width > max_width:
+                base_font_size -= 1
+                font = pygame.font.SysFont("gagalin", base_font_size)
+                text_width, text_height = font.size(text)
 
-        center_x = (self.btn_ans_x + (self.btn_size - text_width) / 2) + 10
-        center_y = (self.btn_ans_y + (self.btn_size - text_height) / 2) + 10
+            text_surface = font.render(text, True, (0, 0, 0))
 
-        surface_draw.blit(text_surface, (center_x, center_y))
+            center_x = (self.btn_ans_x + (self.btn_size - text_width) / 2) + 10
+            center_y = (self.btn_ans_y + (self.btn_size - text_height) / 2) + 10
+
+            surface_draw.blit(text_surface, (center_x, center_y))
 
         player_pressed_keys = pygame.key.get_pressed()
         player_one_key_map = {
@@ -77,28 +81,32 @@ class AnswerButton:
             if player_pressed_keys[key]:
                 return value
 
-    def player_two_btn_draw(self, surface_draw, animation_arr, index, text_choice):
+    def player_two_btn_draw(self, surface_draw, animation_arr, index, text_choice, penalty):
         scale_image = pygame.transform.scale(animation_arr[index], (self.btn_size, self.btn_size))
         surface_draw.blit(scale_image, (self.btn_ans_x, self.btn_ans_y))
 
-        text = text_choice
+        if penalty[1] is True:
+            text_choice = ""
 
-        max_width = self.btn_size
-        base_font_size = 50
-        font = pygame.font.SysFont("gagalin", base_font_size)
-        text_width, text_height = font.size(text)
+        if penalty[0] is False:
+            text = text_choice
 
-        while text_width > max_width:
-            base_font_size -= 1
+            max_width = self.btn_size
+            base_font_size = 35
             font = pygame.font.SysFont("gagalin", base_font_size)
             text_width, text_height = font.size(text)
 
-        text_surface = font.render(text, True, (0, 0, 0))
+            while text_width > max_width:
+                base_font_size -= 1
+                font = pygame.font.SysFont("gagalin", base_font_size)
+                text_width, text_height = font.size(text)
 
-        center_x = (self.btn_ans_x + (self.btn_size - text_width) / 2) + 10
-        center_y = (self.btn_ans_y + (self.btn_size - text_height) / 2) + 10
+            text_surface = font.render(text, True, (0, 0, 0))
 
-        surface_draw.blit(text_surface, (center_x, center_y))
+            center_x = (self.btn_ans_x + (self.btn_size - text_width) / 2) + 10
+            center_y = (self.btn_ans_y + (self.btn_size - text_height) / 2) + 10
+
+            surface_draw.blit(text_surface, (center_x, center_y))
 
         player_pressed_keys = pygame.key.get_pressed()
         player_two_key_map = {
