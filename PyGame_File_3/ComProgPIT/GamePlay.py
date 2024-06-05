@@ -14,6 +14,7 @@ score_count_bg = pygame.image.load("./../GameImageStored/score_count.png")
 player_one_winner = pygame.image.load("./../GameImageStored/player_one_win.png")
 player_two_winner = pygame.image.load("./../GameImageStored/player_two_win.png")
 
+# Choice Animation
 Q_animation = [None] * 6
 for picIndex in range(1, 7):
     Q_animation[picIndex - 1] = pygame.image.load(os.path.join("./../GameImageStored/btn_Q/" + "btn_Q" + str(picIndex) +
@@ -62,11 +63,20 @@ for picIndex in range(1, 7):
                                                                   str(picIndex) + ".png"))
     picIndex += 1
 
+# Question and Answer
 grade_1_question_player = QuestionAndAnswer.grade_1_question
 grade_1_choice_answer = QuestionAndAnswer.grade_1_choice
 
+# After winning btn
+play_again_btn_img = pygame.image.load("./../GameImageStored/play_again.png")
+exit_game_btn_img = pygame.image.load("./../GameImageStored/exit_game_btn.png")
+
 animation_sound_effect = mixer.Sound("./../GameMusicStored/PlyWrongPick.mp3")
 correct_answer_sound_effect = mixer.Sound("./../GameMusicStored/PlyCorrectPick.mp3")
+
+# Click sound effect
+# Click Sound Effect
+click_sound_effect = mixer.Sound("./../GameMusicStored/Click.mp3")
 
 
 def user_play(game_screen_sizes, computer_width_res, computer_height_res):
@@ -86,6 +96,9 @@ def user_play(game_screen_sizes, computer_width_res, computer_height_res):
     ply_two_second_choice = Button.AnswerButton(80, 50, computer_width_res, computer_height_res)
     ply_two_third_choice = Button.AnswerButton(65, 70, computer_width_res, computer_height_res)
     ply_two_fourth_choice = Button.AnswerButton(80, 70, computer_width_res, computer_height_res)
+
+    play_again_btn = Button.ButtonWinner(360, 510, play_again_btn_img, 0.5)
+    exit_game_btn = Button.ButtonWinner(740, 520, exit_game_btn_img, 0.4)
 
     class PlayerScore:
 
@@ -216,17 +229,25 @@ def user_play(game_screen_sizes, computer_width_res, computer_height_res):
                     self.player_two_animation_count = 0
                     self.player_two_penalty = False
 
-        def force_exit(self):
+        def ply_after_win_btn(self):
             if self.player_one_is_winner is True or self.player_two_is_winner is True:
-                if pygame.time.get_ticks() - self.end_game >= 5000:
+                if play_again_btn.after_win_btn(game_screen_sizes)[0]:
+                    click_sound_effect.play()
+                    return user_play(game_screen_sizes, computer_width_res, computer_height_res)
+                if exit_game_btn.after_win_btn(game_screen_sizes)[0]:
+                    click_sound_effect.play()
                     exit(0)
+                if (play_again_btn.after_win_btn(game_screen_sizes)[1] or
+                        exit_game_btn.after_win_btn(game_screen_sizes)[1]):
+                    pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_HAND)
+                else:
+                    pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
 
         def validate_answer(self, hot_keys_press):
             correct_answer = self.class_grade_1_choice_answer[self.class_question_random[self.total_score]][4]
             player_one_answer = ply_draw_btn.player_one_button()
             player_two_answer = ply_draw_btn.player_two_button()
             self.players_time_penalty()
-            self.force_exit()
             if self.have_winner is False:
                 self.question_answer()
             self.score_board()
@@ -314,7 +335,7 @@ def user_play(game_screen_sizes, computer_width_res, computer_height_res):
                                                                     computer_height_res * 0.8))
             ply_win_img_width, ply_win_img_height = ply_win_img_size.get_size()
             ply_win_img_x = (computer_width_res - ply_win_img_width) / 2
-            ply_win_img_y = ((computer_height_res - ply_win_img_height) / 2)
+            ply_win_img_y = (computer_height_res - ply_win_img_height) / 2
             game_screen_sizes.blit(ply_win_img_size, (ply_win_img_x, ply_win_img_y))
 
     rect_x = computer_width_res * 0.20
@@ -345,7 +366,7 @@ def user_play(game_screen_sizes, computer_width_res, computer_height_res):
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                play = False
+                exit(0)
             if event.type == pygame.KEYDOWN:
                 user_hot_keys_press = True
 
@@ -354,4 +375,6 @@ def user_play(game_screen_sizes, computer_width_res, computer_height_res):
         game_screen_sizes.blit(score_count, (score_count_x, score_count_y))
 
         ply_draw_btn.validate_answer(user_hot_keys_press)
+        ply_draw_btn.ply_after_win_btn()
+
         pygame.display.update()

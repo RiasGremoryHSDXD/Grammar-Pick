@@ -2,6 +2,9 @@ grade_1_question = [
     'I _____ good at climbing trees.',
     'I have to _____ my homework',
     'They _____ at the zoo',
+    'I have a pet _____',
+    'The _____ is shinning',
+    'I _____ a book',
 
 
     'Ana is beautiful. What is beautiful in this sentence?',
@@ -34,6 +37,9 @@ grade_1_choice = [
     ['is', 'run', 'am', 'and', 'am'],
     ['does', 'do', 'blue', 'and', 'do'],
     ['is', 'are', 'does', 'readed', 'are'],
+    ['is', 'run', 'dog', 'and', 'dog'],
+    ['run', 'sun', 'blue', 'and', 'sun'],
+    ['reading', 'reads', 'read', 'readed', 'read'],
 
 
     ['Adjective', 'Verb', 'Position', 'Adverb', 'Adjective'],

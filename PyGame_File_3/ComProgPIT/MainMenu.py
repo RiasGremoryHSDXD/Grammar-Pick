@@ -6,8 +6,8 @@ from pygame import mixer
 pygame.init()
 
 info_object = pygame.display.Info()
-computer_width_res = 1000
-computer_height_res = 800
+computer_width_res = 1200
+computer_height_res = 700
 game_screen_size = pygame.display.set_mode((computer_width_res, computer_height_res))
 
 main_menu_bg_clr = (255, 255, 255)
